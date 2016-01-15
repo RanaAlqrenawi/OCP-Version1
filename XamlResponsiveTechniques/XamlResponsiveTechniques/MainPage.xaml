@@ -1,0 +1,522 @@
+﻿<Page
+    x:Class="XamlResponsiveTechniques.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:XamlResponsiveTechniques"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button Name="SplitViewButton" Background="Transparent" Padding="0,-6" Margin="12" Click="SplitViewButton_Click">
+            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" FontSize="32" Margin="0,-8,0,0" Width="50" Height="50" />
+        </Button>
+       
+        <SplitView x:Name="MySplitView" PaneBackground="{ThemeResource ApplicationPageBackgroundThemeBrush}" OpenPaneLength="200"
+                   RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Below="SplitViewButton">
+            <SplitView.Pane>
+                <RelativePanel>
+                    <!-- Static Relativepanel, substitutes nested stackpanel or grid with rows/columns for this simple scenario -->
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="MenuButton1" FontFamily="Segoe MDL2 Assets" Content="&#xE8D1;"
+                                Width="50" Height="50" Background="Transparent"/>
+                            <TextBlock Text="Today" FontSize="18" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="subB11" FontFamily="Segoe MDL2 Assets" Content="&#xE004;"
+                                 Width="50" Height="50" Background="Transparent"/>
+                            <TextBlock Text="Predicted Failure" FontSize="16" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="subB12" FontFamily="Segoe MDL2 Assets" Content="&#xE004;"
+                                Width="50" Height="50" Background="Transparent"/>
+                            <TextBlock Text="Manual Entry" FontSize="16" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="MenuButton2" FontFamily="Segoe MDL2 Assets" Content="&#xE8C0;"
+                                  Width="50" Height="50" Background="Transparent"/>
+                            <TextBlock Text="Week" FontSize="18" VerticalAlignment="Center" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="subB21" Click="HomeButton_Click" FontFamily="Segoe MDL2 Assets" Content="&#xE004;"
+                                  Width="50" Height="50" Background="Transparent"/>
+                            <TextBlock Text="Predicted Failure" FontSize="16" VerticalAlignment="Center" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="subB22" Click="Measurments_Click" FontFamily="Segoe MDL2 Assets" Content="&#xE004;"
+                                 Width="50" Height="50" Background="Transparent"/>
+                            <TextBlock Text="Manual Entry" FontSize="16" VerticalAlignment="Center" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="MenuButton3" FontFamily="Segoe MDL2 Assets" Content="&#xE787;"
+                                   Width="50" Height="50" Background="Transparent"/>
+                            <TextBlock Text="Month" FontSize="18" VerticalAlignment="Center" />
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="subB31" FontFamily="Segoe MDL2 Assets" Content="&#xE004;"
+                                  Width="50" Height="50" Background="Transparent"/>
+                            <TextBlock Text="Predicted Failure" FontSize="16" VerticalAlignment="Center" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="subB32" FontFamily="Segoe MDL2 Assets" Content="&#xE004;"
+                                Width="50" Height="50" Background="Transparent"/>
+                            <TextBlock Text="Manual Entry" FontSize="16" VerticalAlignment="Center" />
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </RelativePanel>
+            </SplitView.Pane>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto" HorizontalScrollBarVisibility="Disabled" HorizontalScrollMode="Disabled">
+                <RelativePanel x:Name="MyRelativePanel">
+                    <!-- Dynamic RelativePanel for composite content where UIElements change positions based on available space 
+                         Note that the constraints that change are not declared inline here but declared within the VisualStates below where they apply.
+                         This is a useful technique for RelativePanel since VisualStates automatically take care of unsetting properties when leaving a particular VisualState-->
+                    <Grid Background="White">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+
+                        <StackPanel Grid.Row="0">
+                            <TextBlock x:Name="FirstText" 
+                                       Text="Manual entry to know if equipment will fail next week"
+                                         FontSize="28"
+                                         TextWrapping="Wrap" 
+                                         Margin="20,20,0,10" 
+                                         FontFamily="Bodoni MT Black" 
+                                         FontWeight="Bold" />
+
+                            <TextBlock x:Name="SecondText" Text="Based on the measurements entered today we will calculate the probability that the measured piece of equipment will fail next week."
+                                        FontSize="22"
+                                        TextWrapping="Wrap"/>
+                        </StackPanel>
+
+                        <ScrollViewer x:Name="scrollViewer" Grid.Row="1" Height="250" Margin="10" >
+                            <Grid x:Name="ContentRoot">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+
+
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0" Grid.Row="0">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="EquipmentID" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="73" Margin="5"/>
+                                    <TextBox x:Name="EquipmentID"  Background="Azure" FontSize="20" Foreground="#0000" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="1">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="GroupID" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="73" Margin="5"/>
+                                    <TextBox  x:Name="GroupID"  Background="Azure" FontSize="20" Foreground="#0000" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="2">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Sequence" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderSequence" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="54" Minimum="16" StepFrequency="4" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding ElementName=SliderSequence,Path=Value}"  Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="3">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Cycle" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderCycle" Grid.Row="3" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="121" Minimum="86" StepFrequency="1" Width="100" IsThumbToolTipEnabled="True" Height="40" />
+                                    <TextBox Text="{Binding ElementName=SliderCycle,Path=Value}"  Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="4">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="TTL" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderTTL" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="20" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+
+                                    <TextBox Text="{Binding ElementName=SliderTTL,Path=Value}"  Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="5">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration  P1" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVP1" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="288" Minimum="48" StepFrequency="20" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding ElementName=SliderVP1,Path=Value}"  Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="6">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration  P2" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVP2" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding ElementName=SliderVP2,Path=Value}" Margin="0,-10,0,0"  FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="7">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration  P3" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43"  Margin="5"/>
+
+                                    <Slider x:Name="SliderVP3" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding ElementName=SliderVP3,Path=Value}" Margin="0,-10,0,0"  FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="8">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration A P1" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43"/>
+                                    <Slider x:Name="SliderVAP1" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVAP1}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="9">
+
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration A P2" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVAP2" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVAP2}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="10">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration A P3" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVAP3" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVAP3}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="11">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration A P4" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+
+                                    <Slider x:Name="SliderVAP4" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVAP4}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="12">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration A P5" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+
+                                    <Slider x:Name="SliderVAP5" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVAP5}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="13">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration A P6" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+
+                                    <Slider x:Name="SliderVAP6" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVAP6}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="14">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration A P7" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+
+                                    <Slider x:Name="SliderVAP7" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVAP7}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="15">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration A P8" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+
+                                    <Slider x:Name="SliderVAP8" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVAP8}" Margin="0,-10,0,0" FontSize="20"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="16">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration A P9" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+
+                                    <Slider x:Name="SliderVAP9" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVAP9}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="17">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration A P10" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+
+                                    <Slider x:Name="SliderVAP10" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVAP10}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="18">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration H P1" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+
+                                    <Slider x:Name="SliderVHP1" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVHP1}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="19">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration H P2" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+
+                                    <Slider x:Name="SliderVHP2" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVHP2}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="20">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration H P3" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVHP3"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVHP3}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="21">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration H P4" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVHP4" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVHP4}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="22">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration H P5" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVHP5"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVHP5}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="23">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration H P6" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVHP6"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVHP6}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="0" Grid.Row="24">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration H P7" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVHP7"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVHP7}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+
+
+
+
+                                <StackPanel Grid.Column="2" Grid.Row="0">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration H P8" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVHP8"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVHP8}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="1">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration H P9" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVHP9"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVHP9}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="2">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration H P10" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVHP10"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVHP10}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="3">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration V P1" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVVP1" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVVP1}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="4">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration V P2" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVVP2" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVVP2}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="5">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration V P3" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVVP3"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVVP3}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="6">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration V P4" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVVP4" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVVP4}" Margin="0,-10,0,0" FontSize="20"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="7">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration V P5" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVVP5"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVVP5}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="8">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration V P6" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVVP6"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVVP6}" Margin="0,-10,0,0" FontSize="20"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="9">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration V P7" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVVP7"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVVP7}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="10">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration V P8" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVVP8"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVVP8}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="11">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration V P9" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVVP9"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVVP9}" Margin="0,-10,0,0" FontSize="20"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="12">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vibration V P10" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderVVP10"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderVVP10}" Margin="0,-10,0,0" FontSize="20"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="13">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Température P1" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderTP1" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderTP1}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="14">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Température P2" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderTP2" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderTP2}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="15">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Température P3" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderTP3"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderTP3}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="16">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Température P4" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderTP4" HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderTP4}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="17">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Température P5" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderTP5"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderTP5}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="18">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Température P6" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderTP6"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderTP6}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="19">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Température P7" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderTP7"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderTP7}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="20">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Température P8" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderTP8"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderTP8}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="21">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Température P9" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderTP9"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderTP9}" Margin="0,-10,0,0" FontSize="20"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Grid.Row="22">
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Température P10" VerticalAlignment="Center" FontSize="20" Foreground="#FF1C1C1C" Height="43" Margin="5"/>
+                                    <Slider x:Name="SliderTP10"  HorizontalAlignment="Center"  VerticalAlignment="Center" Background="#FF787878" Maximum="1000" Minimum="0" StepFrequency="800" Width="100" IsThumbToolTipEnabled="True" Height="40"/>
+                                    <TextBox Text="{Binding Path=Value, ElementName=SliderTP10}" Margin="0,-10,0,0" FontSize="20" />
+                                </StackPanel>
+
+                            </Grid>
+                        </ScrollViewer>
+
+
+                        <StackPanel Grid.Row="3">
+                            <TextBlock x:Name="StartCal" 
+                                       Text="Start calculation"  
+                                        TextAlignment="Right"
+                                        FontSize="24"/>
+                            <Button x:Name="btn" Click="btn_Click" 
+                                    Width="121" 
+                                Height="121">
+                                <Button.Background>
+                                    <ImageBrush Stretch="Uniform" ImageSource="Assets/btn.png"/>
+                                </Button.Background>
+                            </Button>
+                            <TextBlock Text="Results:" 
+                                       FontSize="36"
+                                       Margin="20,0,0,0"/>
+
+                            <TextBlock x:Name="TxtTTL" 
+                                       Text=""
+                                        Style="{StaticResource HeaderTextBlockStyle}"
+                                        Foreground="#FF1D3DF7" 
+                                        FontSize="48" />
+
+                            
+
+                        </StackPanel>
+
+                    </Grid>
+                </RelativePanel>
+            </ScrollViewer>
+        </SplitView>
+        <!-- Responsive VisualStates -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <!-- VisualState to be triggered when window width is >=720 effective pixels -->
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!-- Widest possible layout moves some elements around to optimize for more available width 
+                        and keeps SplitView pane always showing inline -->
+                        <Setter Target="MySplitView.DisplayMode" Value="Inline" />
+                        <Setter Target="MySplitView.IsPaneOpen" Value="True" />
+                        <Setter Target="SecondText.Margin" Value="30,0,0,0" />
+                        <Setter Target="StartCal.Margin" Value="0,0,30,0" />
+                        <Setter Target="btn.HorizontalAlignment" Value="Right" />
+                        <Setter Target="btn.Margin" Value="0,0,30,0" />
+                        <Setter Target="ContentRoot.HorizontalAlignment" Value="Center" />
+                        <Setter Target="TxtTTL.HorizontalAlignment" Value="Center" />
+
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <!-- VisualState to be triggered when window width is >=548 and <720 effective pixels -->
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="548" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!-- For intermediate window widths as well as most phones on landscape orientation, 
+                        this state keeps primary layout narrow while showing the splitview pane to take advantage of more available width than narrow layout -->
+                        <Setter Target="MySplitView.DisplayMode" Value="Inline" />
+                        <Setter Target="MySplitView.IsPaneOpen" Value="True" />
+                        <Setter Target="SecondText.Margin" Value="30,0,0,0" />
+                        <Setter Target="StartCal.Margin" Value="0,0,30,0" />
+                        <Setter Target="btn.HorizontalAlignment" Value="Right" />
+                        <Setter Target="btn.Margin" Value="0,0,30,0" />
+                        <Setter Target="TxtTTL.HorizontalAlignment" Value="Center" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <!-- VisualState to be triggered when window width is >=0 and <548 effective pixels -->
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!-- For the most narrow windows and phones in portrait orientation, this state collapses the SplitView pane into overlay mode
+                        and adds dynamic RelativePanel constraints that puts all elements stacked below each other -->
+                        <Setter Target="MySplitView.DisplayMode" Value="Overlay" />
+                        <Setter Target="MySplitView.IsPaneOpen" Value="True" />
+                        <Setter Target="SecondText.FontSize" Value="18" />
+                        <Setter Target="FirstText.FontSize" Value="18" />
+                        <Setter Target="TxtTTL.HorizontalAlignment" Value="Center" />
+                        <Setter Target="btn.HorizontalAlignment" Value="Center" />
+                        <Setter Target="StartCal.HorizontalAlignment" Value="Center" />
+                        <Setter Target="SecondText.Margin" Value="20,0,20,0" />
+
+
+
+
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </RelativePanel>
+</Page>
